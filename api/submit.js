@@ -20,7 +20,7 @@ export default async function handler(req, res) {
   "avemcomarketing@avemco.com",
   "avemco@avemco.com",
           "daniel@ironsidepress.net"
-]
+],
         subject: "New Aircraft Insurance Quote Request",
 
         html: `
