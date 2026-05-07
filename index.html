@@ -1,17 +1,38 @@
-<form id="quoteForm">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AVEMCO Quote</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
 
-  <div class="row">
-    <input type="text" name="first_name" placeholder="First Name" required>
-    <input type="text" name="last_name" placeholder="Last Name" required>
+<div class="form-wrapper">
+  <div class="form-card">
+
+    <h2>Get an Aircraft Insurance Quote</h2>
+    <p class="sub">Takes less than 60 seconds</p>
+
+    <form id="quoteForm">
+
+      <div class="row">
+        <input type="text" name="first_name" placeholder="First Name" required>
+        <input type="text" name="last_name" placeholder="Last Name" required>
+      </div>
+
+      <div class="row">
+        <input type="tel" name="phone" placeholder="Phone Number" required>
+        <input type="email" name="email" placeholder="Email Address" required>
+      </div>
+
+      <button type="submit">Get Quote</button>
+
+    </form>
+
   </div>
-
-  <div class="row">
-    <input type="tel" name="phone" placeholder="Phone Number" required>
-    <input type="email" name="email" placeholder="Email Address" required>
-  </div>
-
-  <button type="submit">Get Quote</button>
-
-</form>
+</div>
 
 <script src="script.js"></script>
+</body>
+</html>
