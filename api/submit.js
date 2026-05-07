@@ -18,7 +18,8 @@ export default async function handler(req, res) {
         from: "AVEMCO Quote Form <onboarding@resend.dev>",
         to: [
   "avemcomarketing@avemco.com",
-  "avemco@avemco.com"
+  "avemco@avemco.com",
+          "daniel@ironsidepress.net"
 ]
         subject: "New Aircraft Insurance Quote Request",
 
