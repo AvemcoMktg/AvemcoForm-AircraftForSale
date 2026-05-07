@@ -1,10 +1,18 @@
 export default async function handler(req, res) {
 
+  console.log("METHOD:", req.method);
+  console.log("BODY:", req.body);
+  console.log("ENV KEY EXISTS:", !!process.env.RESEND_API_KEY);
+
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
   try {
+
+    if (!process.env.RESEND_API_KEY) {
+      return res.status(500).json({ error: "Missing RESEND_API_KEY" });
+    }
 
     const data = typeof req.body === "string"
       ? JSON.parse(req.body)
@@ -17,43 +25,23 @@ export default async function handler(req, res) {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        from: "AVEMCO Quote Form <onboarding@resend.dev>",
-
+        from: "AVEMCO Quote <onboarding@resend.dev>",
         to: [
           "avemcomarketing@avemco.com",
           "avemco@avemco.com"
         ],
-
         subject: "New Aircraft Insurance Quote Request",
 
         html: `
-          <h2>New Aircraft Insurance Quote</h2>
-
-          <hr />
-
-          <h3>Contact Info</h3>
-          <p><strong>First Name:</strong> ${data.first_name || ""}</p>
-          <p><strong>Last Name:</strong> ${data.last_name || ""}</p>
-          <p><strong>Phone:</strong> ${data.phone || ""}</p>
-          <p><strong>Email:</strong> ${data.email || ""}</p>
-
-          <hr />
-
-          <h3>Aircraft Details</h3>
-          <p><strong>Base Airport:</strong> ${data.base_airport || ""}</p>
-          <p><strong>Aircraft Year:</strong> ${data.aircraft_year || ""}</p>
-          <p><strong>Aircraft Make:</strong> ${data.aircraft_make || ""}</p>
-          <p><strong>Aircraft Model:</strong> ${data.aircraft_model || ""}</p>
-
-          <hr />
-
-          <h3>Value</h3>
-          <p><strong>Value Requested:</strong> ${data.value_requested || ""}</p>
+          <h2>New Quote</h2>
+          <p>${JSON.stringify(data)}</p>
         `
       })
     });
 
     const result = await response.json();
+
+    console.log("RESEND RESULT:", result);
 
     if (!response.ok) {
       return res.status(500).json(result);
@@ -62,6 +50,7 @@ export default async function handler(req, res) {
     return res.status(200).json({ success: true });
 
   } catch (error) {
+    console.error("ERROR:", error);
     return res.status(500).json({ error: error.message });
   }
 }
