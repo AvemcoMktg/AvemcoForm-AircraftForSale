@@ -4,9 +4,11 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  const data = req.body;
-
   try {
+
+    const data = typeof req.body === "string"
+      ? JSON.parse(req.body)
+      : req.body;
 
     const response = await fetch("https://api.resend.com/emails", {
       method: "POST",
@@ -16,11 +18,12 @@ export default async function handler(req, res) {
       },
       body: JSON.stringify({
         from: "AVEMCO Quote Form <onboarding@resend.dev>",
+
         to: [
-  "avemcomarketing@avemco.com",
-  "avemco@avemco.com",
-          "daniel@ironsidepress.net"
-],
+          "avemcomarketing@avemco.com",
+          "avemco@avemco.com"
+        ],
+
         subject: "New Aircraft Insurance Quote Request",
 
         html: `
