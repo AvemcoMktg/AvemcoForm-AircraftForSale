@@ -16,14 +16,32 @@
 
     <form id="quoteForm">
 
+      <!-- Name -->
       <div class="row">
         <input type="text" name="first_name" placeholder="First Name" required>
         <input type="text" name="last_name" placeholder="Last Name" required>
       </div>
 
+      <!-- Contact -->
       <div class="row">
         <input type="tel" name="phone" placeholder="Phone Number" required>
         <input type="email" name="email" placeholder="Email Address" required>
+      </div>
+
+      <!-- Aircraft Info -->
+      <div class="row">
+        <input type="text" name="base_airport" placeholder="Base Airport (Identifier)">
+        <input type="number" name="aircraft_year" placeholder="Aircraft Year">
+      </div>
+
+      <div class="row">
+        <input type="text" name="aircraft_make" placeholder="Aircraft Make">
+        <input type="text" name="aircraft_model" placeholder="Aircraft Model">
+      </div>
+
+      <!-- Value -->
+      <div class="row">
+        <input type="number" name="value_requested" placeholder="Value Requested">
       </div>
 
       <button type="submit">Get Quote</button>
